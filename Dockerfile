@@ -8,12 +8,3 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
   && tar xzvf doctl-1.16.0-linux-amd64.tar.gz \
   && chmod u+x ./doctl \
   && mv doctl /usr/local/bin
-
-RUN \
-  adduser -D -G docker docker && \
-  adduser -D runner && \
-  echo "runner ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/runner && \
-  chmod 0440 /etc/sudoers.d/runner
-
-USER runner
-CMD /bin/sh
