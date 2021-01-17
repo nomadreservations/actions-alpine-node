@@ -1,6 +1,9 @@
 FROM node:12-alpine
 
 RUN apk add docker curl && apk update
+RUN apk add --no-cache make gcc g++ python && \
+  npm install --production --silent && \
+  apk del make gcc g++ python
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl \
   && chmod u+x ./kubectl \
   && mv kubectl /usr/local/bin \
