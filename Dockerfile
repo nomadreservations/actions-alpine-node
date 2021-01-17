@@ -10,6 +10,7 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
   && mv doctl /usr/local/bin
 
 RUN \
+  adduser -D -G docker docker && \
   adduser -D runner && \
   echo "runner ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/runner && \
   chmod 0440 /etc/sudoers.d/runner
